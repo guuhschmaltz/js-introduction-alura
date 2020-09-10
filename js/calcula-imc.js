@@ -1,6 +1,15 @@
 var titleEl = document.querySelector('.titulo');
 titleEl.textContent = 'Gustavo Nutricionista';
+titleEl.addEventListener('click', mostraMensagem);
 
+function mostraMensagem(){
+    alert('Você clicou no título')
+}
+
+function calculaImc(peso,altura){
+    var imc = peso / (altura * altura);
+    return imc.toFixed(2);//Duas casas decimais
+}
 
 var pacientes = document.querySelectorAll('.paciente');
 
@@ -29,12 +38,8 @@ for(i = 0; i < pacientes.length; i++) {
     }
     if (pesoEhValido === true && alturaEhValida === true)
     {
-       var imc = peso / (altura * altura);
-       imcEl.textContent = imc.toFixed(2);
+       var imc = calculaImc(peso,altura);
+       imcEl.textContent = imc;
     }
 }
-
-
-
-
 
