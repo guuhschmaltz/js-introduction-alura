@@ -140,3 +140,7 @@ button[disabled=disabled], button:disabled {
 	background-color: indianred;
 	color: white;
 }
+
+#mensagens-erro{
+	color: red;
+}

@@ -5,12 +5,21 @@ botaoAdicionar.addEventListener("click", function(event) {
     var form = document.querySelector("#form-adiciona");
     var paciente = obterPacienteDoFormulario(form);
     var pacienteTr = montaTr(paciente);
+    var erros = validaPaciente(paciente);
+    if(erros.length > 0){
+        exibeMensagensDeErro(erros);
+
+        return;
+    } 
     
     //Adicionando o paciente na tabela
     var tabela = document.querySelector("#tabela-pacientes");
     tabela.appendChild(pacienteTr);
-
-    form.reset();
+    
+    //Resetando formulario após adicionar com sucesso
+    form.reset();   //Resetando campos
+    var mensagensDeErro = document.querySelector("#mensagens-erro"); // Capturando erros
+    mensagensDeErro.innerHTML = ""; // Resetando erros que foram exibidos
 });
 
 function obterPacienteDoFormulario(form){
@@ -52,4 +61,29 @@ function montaTd(dado, classe){
     td.classList.add(classe);
     
     return td;
+}
+
+function validaPaciente(paciente) {
+    var erros = [];
+
+    if (paciente.nome.length <= 0) erros.push('O Nome não pode ser em branco');
+    if (paciente.peso.length <= 0) erros.push('O Peso não pode ser em branco');
+    if (paciente.altura.length <= 0) erros.push('A Altura não pode ser em branco');
+    if (paciente.gordura.length <= 0) erros.push('O percentual de gordura não pode ser em branco');
+
+    if (!validaPeso(paciente.peso))  erros.push('Peso é inválido'); //Se for um if simples podemos remover as {}
+    if (!validaPeso(paciente.altura)) erros.push('Altura é inválida');
+
+    return erros;
+}
+
+
+function exibeMensagensDeErro(erros){
+    var ul = document.querySelector('#mensagens-erro');
+    ul.innerHTML = "" //Apagar as mensagens de erro anteriores como se fosse um reset para não mostrar erros infinitos
+    erros.forEach(function(erro){
+        var li = document.createElement('li');
+        li.textContent = erro;
+        ul.appendChild(li); 
+    });
 }
