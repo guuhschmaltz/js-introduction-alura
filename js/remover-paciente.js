@@ -8,7 +8,7 @@ tabela.addEventListener('dblclick', function(event){
     //var paiDoEvento = evento.parentNode;
     //paidoEvento.remove();
     event.target.parentNode.remove(); //PARENT NODE É O PAI DO ELEMENTO QUE FOI CLICADO
-    },500); // 500 ms
+    },500); // 500ms
 
 
 });
