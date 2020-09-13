@@ -12,7 +12,7 @@ campo.addEventListener('input',function(){ //Adicionar "ouvidor" de eventos do i
             var nome = tdNome.textContent;
             var expressao = new RegExp(this.value, 'i');//Expressao regular com case insensitive
 
-            if(!expressao.test(nome)){
+            if(!expressao.test(nome)){ //Utilizando o test do expressao regular como filtro
             //if(nome != this.value){
                 paciente.classList.add('invisivel');
             }else{
